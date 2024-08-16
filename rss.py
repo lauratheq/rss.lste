@@ -31,6 +31,9 @@ def register_hooks(lste: Any) -> None:
         lste (Any): The site object, which is expected to have a `hooks` attribute
                     where functions can be added to specific events.
     """
+    if 'rss' not in lste.config_file:
+        return
+
     lste.hooks.add('after_render_content', generate_rss)
     lste.hooks.add('after_save_site', save_rss_file)
 
